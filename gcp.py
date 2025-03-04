@@ -70,7 +70,7 @@ class GCP:
 if __name__ == "__main__":
     gcp = GCP()
     # gcp.upload_to_gcs("/home/mothilal/Documents/temp/video/video.mp4", "video.mp4")
-    # print(gcp.generage_signed_url("video.mp4"))
+    print(gcp.generate_signed_url("student/cv/1/02242025/COSTA RICA IN 4K 60fps HDR (ULTRA HD).mp4"))
     # gcp.delete_blob("video.mp4")
     # gcp.list_blobs()
     # gcp.download_blob("video.mp4")

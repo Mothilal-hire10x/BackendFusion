@@ -1,2 +1,6 @@
 google-cloud-storage==3.0.0
 dotenv==0.9.9
+gspread==6.1.4
+pandas==2.2.3
+Faker==36.1.1
+oauth2client==4.1.3

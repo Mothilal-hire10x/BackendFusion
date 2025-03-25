@@ -41,6 +41,6 @@ class AWS:
 
 if __name__ == "__main__":
     aws = AWS()
-    # aws.upload_to_s3("/home/mothilal/Documents/BackendFusion/lighthouse.webp")
-    aws.generate_signed_url("lighthouse.webp")
+    # aws.upload_to_s3("/home/mothilal/Downloads/Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4")
+    aws.generate_signed_url("Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4", "courses/Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4")
 

@@ -25,7 +25,7 @@ class GCP:
         blob = self.bucket.blob(blob_name)
         url = blob.generate_signed_url(
             version="v4",
-            expiration=timedelta(minutes=15),
+            expiration=timedelta(hours=24),
             method="GET",
         )
         return url
@@ -66,13 +66,27 @@ class GCP:
         for blob in blobs:
             print(blob.name)
 
+    def get_blob_details(self, blob_name: str) -> None:
+        """Gets the details of a blob."""
+        blob = self.bucket.blob(blob_name)
+        blob.reload()  # Ensures metadata is loaded
+
+        if blob.exists():
+            print(f"Blob Name: {blob.name}")
+            print(f"Size: {blob.size} bytes")
+            print(f"Content Type: {blob.content_type}")
+        else:
+            print(f"Blob '{blob_name}' does not exist.")
+
+
 
 if __name__ == "__main__":
     gcp = GCP()
-    # gcp.upload_to_gcs("/home/mothilal/Documents/temp/video/video.mp4", "video.mp4")
-    print(gcp.generate_signed_url("student/cv/1/02242025/COSTA RICA IN 4K 60fps HDR (ULTRA HD).mp4"))
+    # gcp.upload_to_gcs("/home/mothilal/Downloads/Java For Programmers in 2 hours - Telusko (720p, h264) (1).mp4", "courses/java-video.mp4")
+    print(gcp.generate_signed_url("courses/java-video.mp4"))
     # gcp.delete_blob("video.mp4")
-    # gcp.list_blobs()
+    # gcp.get_blob_details("courses/333/modules/592/materials/Learn React Router with a Beginners Project  Learn React JS - Dave Gray (720p, h264).mp4")
     # gcp.download_blob("video.mp4")
     # gcp.download_all_blobs()
+    # gcp.list_blobs()
     # gcp.list_blobs_with_prefix("video")

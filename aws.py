@@ -38,9 +38,27 @@ class AWS:
         except Exception as e:
             print(f"Error generating signed URL: {e}")
 
+    def generate_presigned_url(self, object_name, expiration=3600):
+        try:
+            url = self.s3_client.generate_presigned_url(
+                'get_object',
+                Params={
+                    'Bucket': bucket_name,
+                    'Key': object_name,
+                    'ResponseContentType': 'video/mp4',  # Ensure it's recognized as a video
+                    'ResponseContentDisposition': 'inline'  # Forces streaming instead of downloading
+                },
+                ExpiresIn=expiration
+            )
+            print("Signed URL:", url)
+            return url
+        except Exception as e:
+            print(f"Error generating signed URL: {e}")
+
 
 if __name__ == "__main__":
     aws = AWS()
-    # aws.upload_to_s3("/home/mothilal/Downloads/Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4")
-    aws.generate_signed_url("Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4", "courses/Nature WhatsApp Status Video 30 Seconds｜ Nature Love Song Background 2022｜4k.mp4")
+    # aws.upload_to_s3("/home/mothilal/Downloads/Java For Programmers in 2 hours - Telusko (720p, h264) (1).mp4", "java-video.mp4")
+    # aws.generate_signed_url("java-video.mp4")
+    aws.generate_presigned_url("java-video.mp4")
 
